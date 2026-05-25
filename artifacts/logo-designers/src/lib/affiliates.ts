@@ -1,0 +1,58 @@
+export const AFFILIATE = {
+  alestra:
+    "https://go.fiverr.com/visit/?bta=1139651&brand=fp&landingPage=https%253A%252F%252Fgo.fiverr.com%252Fvisit%252F%253Fbta%253D1139651%2526brand%253Dfp%2526landingPage%253Dhttps%2525253A%2525252F%2525252Fgo.fiverr.com%2525252Fvisit%2525252F%2525253Fbta%2525253D1139651%25252526brand%2525253Dfp%25252526landingPage%2525253Dhttps%25252525253A%25252525252F%25252525252Fpro.fiverr.com%25252525252Fagencies%25252525252Falestra",
+  juhi: "https://go.fiverr.com/visit/?bta=1139651&brand=fp&landingPage=https%253A%252F%252Fpro.fiverr.com%252Ffreelancers%252Fexplorance%253Futm_source%253D1139651%2526utm_medium%253Dcx_affiliate%2526utm_campaign%253D_bus-y%2526afp%253D%2526cxd_token%253D1139651_44793043%2526show_join%253Dtrue%2526ref_ctx_id%253Dc86858ecc5314ce6838c8f86cbacafa1%2526expertises%253Dtype%25253Aleaf_cat_id%25252Cid%25253A49%25252CparentId%25253A49%25257Ctype%25253Askill%25252Cid%25253A617fa6650565f0778900660f%25252CparentId%25253Anull%25257Ctype%25253Askill%25252Cid%25253A617fa6510565f0778900601a%25252CparentId%25253Anull%25257Ctype%25253Askill%25252Cid%25253A617fa6650565f077890065e7%25252CparentId%25253Anull%2526gigs%253Did%25253A454378697%25252Cpckg_id%25253A1%25257Cid%25253A307424447%25252Cpckg_id%25253A1%25257Cid%25253A194009784%25252Cpckg_id%25253A1%2526imp_id%253De3c035bd-cff6-4875-8585-41ba230c3ad4%2526ref%253Dgig_price_range%25253A0%25252C150%2526source%253Dexpert_listings_page%2526is_experiential%253Dtrue",
+  valeriia:
+    "https://go.fiverr.com/visit/?bta=1139651&brand=fp&landingPage=https%253A%252F%252Fpro.fiverr.com%252Ffreelancers%252Fvaleriiaty%253Fref_ctx_id%253D2eb6e0b48e78498a81c78fd6468c0401%2526expertises%253Dtype%25253Aleaf_cat_id%25252Cid%25253A49%25252CparentId%25253A49%25257Ctype%25253Askill%25252Cid%25253A617fa6620565f07789006535%25252CparentId%25253Anull%25257Ctype%25253Askill%25252Cid%25253A617fa63d0565f07789005a5e%25252CparentId%25253Anull%25257Ctype%25253Askill%25252Cid%25253A617fa6680565f077890066d9%25252CparentId%25253Anull%2526gigs%253Did%25253A162059693%25252Cpckg_id%25253A1%25257Cid%25253A288950630%25252Cpckg_id%25253A1%25257Cid%25253A229132321%25252Cpckg_id%25253A1%2526imp_id%253D18cc32d1-9ab6-4b0b-bec9-a08f09fefe29",
+} as const;
+
+export const DESIGNERS = {
+  alestra: {
+    name: "Alestra Agency",
+    title: "The Enterprise Authority",
+    badge: "Fiverr Pro Agency",
+    rating: 4.9,
+    reviews: "31,034",
+    employees: 45,
+    location: "Pakistan",
+    priceRange: "$75 – $500+",
+    priceEntry: "$75",
+    delivery: "2–7 days",
+    specialty: "Branding, Pitch Decks & Websites",
+    notableClients: ["Rabobank", "Panasonic", "Bryter"],
+    href: "/reviews/alestra",
+    affiliate: AFFILIATE.alestra,
+  },
+  juhi: {
+    name: "Juhi (Explorance)",
+    title: "The Minimalist Pro",
+    badge: "Fiverr Pro",
+    rating: 4.8,
+    reviews: "9,319",
+    employees: null,
+    location: "India",
+    priceRange: "$41 – $350",
+    priceEntry: "$41",
+    delivery: "1–5 days",
+    specialty: "Modern Minimal & Tech Brands",
+    notableClients: [],
+    href: "/reviews/juhi",
+    affiliate: AFFILIATE.juhi,
+  },
+  valeriia: {
+    name: "Valeriia T",
+    title: "The Versatile Elite",
+    badge: "Fiverr Pro",
+    rating: 4.8,
+    reviews: "8,045",
+    employees: null,
+    location: "Ukraine",
+    priceRange: "$175 – $500+",
+    priceEntry: "$175",
+    delivery: "2–6 days",
+    specialty: "Feminine, Luxury & Versatile Branding",
+    notableClients: ["Fiverr"],
+    href: "/reviews/valeriia",
+    affiliate: AFFILIATE.valeriia,
+  },
+} as const;

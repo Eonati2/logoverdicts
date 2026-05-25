@@ -1,0 +1,20 @@
+uploads = []
+outputs = []
+
+[[generated]]
+id = "bsl923ZFYjY1Do6mAGXI9"
+uri = "file://artifacts/logo-designers/public/images/alestra-pin.png"
+type = "image"
+title = "alestra luxury brand logo"
+
+[[generated]]
+id = "rsHbZyqb0SLVhtI4bsPEc"
+uri = "file://artifacts/logo-designers/public/images/juhi-pin.png"
+type = "image"
+title = "juhi minimalist tech logo"
+
+[[generated]]
+id = "mpuiiN7Mb63x7EOw6x5rS"
+uri = "file://artifacts/logo-designers/public/images/valeriia-pin.png"
+type = "image"
+title = "valeriia premium portfolio"
