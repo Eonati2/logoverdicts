@@ -152,14 +152,26 @@ protects the account.
 
 ## Costs
 
-| Item | Credits |
-|---|---|
-| Character sheet (one image, nano_banana_pro, 2K) | 2 |
-| Voice line (~20s) | 2 |
-| Video generation | **Untested — preflight with `get_cost: true` before the first batch** |
+Preflighted 2026-09-02. Balance after the two character sheets: **~390 credits**.
 
-Higgsfield balance was 394 before the two character sheets. Image and audio are cheap; video is
-the unknown and the only real budget risk. Price it before committing to a batch.
+| Item | Credits | Videos per 390 |
+|---|---|---|
+| Character sheet (nano_banana_pro, 2K image) | 2 | — |
+| Voice line (~20s) | 2 | — |
+| **seedance_2_0_mini, 5s, 720p** | **12.5** | **~31** |
+| seedance_2_0 std, 5s, 720p | 22.5 | ~17 |
+| seedance_2_0 std, 8s, 720p | 36 | ~10 |
+
+Video is 90% of the budget and the model choice decides the runway. **A month of daily posting
+needs 30 clips** — only the mini tier reaches that on the current balance.
+
+Recommended: generate the pilot once on **std 5s (22.5)** to see the quality ceiling, then run
+volume on **mini 5s (12.5)** if the gap is not visible in a 5-second vertical clip on a phone.
+5 seconds is also what the data wants — 5s → 8.8M and 7s → 28.4M, while the 81-second entry
+managed only 1.3M.
+
+Model: `seedance_2_0` is tagged `identity` and `consistent`, accepts `image_references`, has a
+`comedy` genre hint, and generates native audio.
 
 ## Next
 
