@@ -180,3 +180,16 @@ Model: `seedance_2_0` is tagged `identity` and `consistent`, accepts `image_refe
 2. Preflight video cost, then generate script #1 as a single pilot.
 3. Add SFX and cut to 5–15s.
 4. Only after one pilot looks right, batch the remaining nine.
+
+---
+
+## Pilot log
+
+| # | Script | Job ID | Config | Credits |
+|---|---|---|---|---|
+| 1 | #10 skincare / cucumber | `712af5ce-f789-4ed0-923d-0eb31fd0844f` | seedance_2_0 std, 9:16, 5s, 720p, native audio, both sheets as image_references | 22.5 |
+
+Chosen as the first pilot because it puts both characters in frame together, which is the real
+consistency test, and the gag is legible in five seconds.
+
+Balance after: ~367 credits.
