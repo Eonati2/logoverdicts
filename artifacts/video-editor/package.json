@@ -1,0 +1,21 @@
+{
+  "name": "@workspace/video-editor",
+  "version": "0.0.0",
+  "private": true,
+  "description": "Programmatic video editing for short-form social clips (Remotion)",
+  "scripts": {
+    "studio": "remotion studio",
+    "render": "remotion render",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@remotion/cli": "^4.0.0",
+    "remotion": "^4.0.0",
+    "react": "catalog:",
+    "react-dom": "catalog:"
+  },
+  "devDependencies": {
+    "@types/react": "catalog:",
+    "typescript": "~5.9.3"
+  }
+}
