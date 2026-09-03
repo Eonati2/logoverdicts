@@ -1,0 +1,178 @@
+# Phase 6 — Money-Counter Luxury Edit: full teardown
+
+Reverse-engineered from the reference upload (`@wq.8__`) by frame extraction, scene detection and
+audio analysis. 18.11s, 576×1024 (9:16), 29.44 fps, AAC audio.
+
+TikTok is blocked by the egress proxy, so this came from the file itself: ffmpeg frame extraction
+at 2 fps, brightness-boosted scene detection (the footage is too dark for normal detection), and a
+numpy onset/loudness pass on the extracted audio.
+
+---
+
+## Structure: two acts and one hard drop
+
+| Time | Act | What |
+|---|---|---|
+| 0.0 – 8.0s | **The counter** | Pure black screen. One centred dollar figure ticking up. Nothing else. |
+| **8.0s** | **The drop** | Counter stops, music jumps **+11 dB**, first montage cut — all on the same frame. |
+| 8.0 – 17.0s | **The montage** | ~27 luxury b-roll shots, cut every ~0.33s, beat-synced. |
+| 17.0s | **Out** | Hard cut to near-silence (−43.9 dB). |
+
+The whole video is a build and a payoff. Act one spends 8 seconds doing almost nothing visually,
+which is precisely why the drop lands.
+
+---
+
+## Act 1 — the counter (0.0–8.0s)
+
+This is the hook, and it is much simpler than it looks.
+
+- **Background: pure black.** No footage underneath. Just black.
+- **One line of text**, centred horizontally, sitting slightly above centre.
+- **Format:** `$ 792,982` — dollar sign, a space, comma-grouped.
+- **Colour: mid-grey, not white** (roughly `#B4B4B4`). This matters — white would glare on a black
+  field; grey reads as expensive and lets the drop's brightness feel like a jump.
+- **Typeface:** clean geometric sans, medium weight, large — the number spans most of the frame.
+
+**The counter is perfectly linear.** Measured values every 0.5s:
+
+```
+3,509 → 56,140 → 108,772 → 161,404 → 214,035 → 266,667 → 319,298 → 371,930
+→ 424,561 → 477,193 → 529,825 → 582,456 → 635,088 → 687,719 → 740,351 → 792,982
+```
+
+Every increment is **52,631.5 per half-second** — that is **$105,263 per second**, dead constant.
+
+### The retention trick hiding in the maths
+
+At 105,263/sec, the counter reaches **exactly $1,000,000 at t = 9.47s**.
+
+**The video cuts away at 8.0s.** You never see it land on the million.
+
+That is not an accident — it is the reason people rewatch. The number is calibrated to a round
+target the viewer is subconsciously waiting for, and then the edit denies it. Combined with a
+short loop, the viewer goes round again to find the ending that does not exist.
+
+---
+
+## Act 2 — the montage (8.0–17.0s)
+
+Measured cut points and the gaps between them:
+
+```
+8.194  8.528  10.594  10.928  11.294  11.628  11.994  14.961  15.361  15.661  16.042
+gaps:   0.333   0.333   0.367   0.333   0.367   0.400   0.300   0.348
+```
+
+**Every shot is roughly one third of a second.** Three cuts per second, sustained for nine
+seconds. (The two larger gaps are missed detections in near-black passages — the frame extraction
+shows a different shot every 0.5s throughout, so the real rate is constant.)
+
+### Shot list
+
+Car interior · parking garage · fireworks over water · headlights at night · city skyline ·
+trading chart on a laptop · supercars in a showroom · night street · crowd · black supercar ·
+stock ticker screens · $50 bill macro · perfume/emblem · branded pen · quilted designer bag ·
+watch face · Porsche rear · three watches held over a keyboard.
+
+Every shot is **desaturated to near-monochrome, very dark, high contrast**. No shot is bright.
+No shot contains a face in focus. No text appears after the counter ends.
+
+---
+
+## The audio, measured
+
+| Second | RMS (dBFS) | |
+|---|---|---|
+| 0–6s | ≈ −30 | counter, deliberately quiet |
+| 7s | −26.4 | rising |
+| **8s** | **−19.5** | **the drop, +11 dB** |
+| 9–15s | −17 to −19 | sustained loud |
+| **16s** | **−11.0** | peak accent |
+| 17s | −43.9 | hard silence |
+
+- Median inter-onset interval **0.360s** → **~167 BPM**, i.e. **~83 BPM half-time** — standard
+  phonk/trap territory.
+- A steady 0.50s pulse runs underneath with off-beat ornaments between.
+
+### The cuts are beat-locked
+
+Comparing each measured cut to the nearest audio onset:
+
+| Cut | Offset from beat |
+|---|---|
+| 8.194 | +0.049s |
+| 8.528 | +0.087s |
+| 10.594 | +0.018s |
+| 10.928 | +0.055s |
+| 11.294 | −0.056s |
+| 14.961 | +0.027s |
+| 15.661 | +0.082s |
+
+**Seven of eleven cuts land within 90 milliseconds of a beat.** This is a beat-synced edit, not
+loosely timed footage. It is the single hardest thing to fake and the main reason the montage
+feels professional rather than like a slideshow.
+
+---
+
+## The repeatable recipe
+
+Nine rules. Follow all nine and the format reproduces.
+
+1. **Open on pure black with one grey number.** No footage for the first 8 seconds.
+2. **Counter runs linearly at a fixed rate** — pick a rate that would hit a round target
+   (1,000,000 / duration-you-want).
+3. **Cut away before it lands.** This is the retention mechanic. Never show the round number.
+4. **Drop the music +10 dB at the exact frame the counter stops.** Counter end, music drop and
+   first cut are the same frame.
+5. **Montage cuts every 0.33s.** Three per second, no exceptions, for about nine seconds.
+6. **Land cuts within ~50ms of the beat.** At ~83 BPM half-time this is every eighth note.
+7. **Desaturate everything and crush the blacks.** Near-monochrome, no bright shot, no faces.
+8. **No text after the counter.** The number is the only copy in the whole video.
+9. **End on a loud accent, then hard silence.**
+
+---
+
+## What our tools can and cannot do here
+
+**Good news: this format suits generation far better than the character comedy.** There are no
+recurring characters to keep consistent — the hardest problem in the Nugget & Bruno work simply
+does not exist here. It is all b-roll.
+
+| Element | Tool | Note |
+|---|---|---|
+| B-roll shots | Higgsfield `generate_video` | Cars, watches, city, cash, trading screens all generate well |
+| The counter | `video-editing` (higgsedit) | Kinetic typography over black; sandbox render, likely free |
+| Cutting and beat-sync | `video-editing` (higgsedit) | JS-defined timeline, so cut points can be specified numerically |
+| Grade (desaturate, crush blacks) | `video-editing` LUT/shader | Built into the workflow |
+| **Music** | **None — cannot generate** | Higgsfield explicitly declines general music generation |
+
+### The efficiency that makes this cheap
+
+Each shot is only **0.33 seconds**, but generation bills by clip. So do not generate 27 clips.
+
+**Generate 5–6 clips of 5 seconds each, then cut them into 0.33s fragments.** Six 5-second clips
+is 30 seconds of footage — enough for roughly 90 distinct fragments, against the ~27 the montage
+needs. Cost: **6 × 22.5 = 135 credits** at standard, or **75** on mini.
+
+### Music is yours to supply
+
+Higgsfield cannot generate the track, and the "SFX" in this format are not a separate layer —
+the percussive hits *are* the music. So the entire sound design reduces to one decision: pick the
+track.
+
+Take it from **TikTok's own audio library**, and prefer a trending sound. That is both the only
+practical route and the better one, since trending audio carries its own reach. Pick the track
+**first** — the cut points are derived from its BPM, so the edit cannot be built before the music
+exists.
+
+---
+
+## One caution worth stating plainly
+
+A ticking dollar counter reads as an earnings claim. If it is posted as *your* revenue and it
+isn't, that is a fabricated income claim — the same issue flagged on the LogoVerdicts script
+earlier, and it carries real platform and advertising-standards risk.
+
+The fix is cheap: keep it aspirational and unattributed, or label it. The format works exactly as
+well without implying the money is yours — the reference account never states whose it is either.
