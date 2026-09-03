@@ -599,6 +599,9 @@ importers:
       '@remotion/cli':
         specifier: ^4.0.0
         version: 4.0.520(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(typescript@5.9.3)
+      '@remotion/media-utils':
+        specifier: 4.0.520
+        version: 4.0.520(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       react:
         specifier: 'catalog:'
         version: 19.1.0

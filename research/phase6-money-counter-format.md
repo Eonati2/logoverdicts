@@ -109,9 +109,22 @@ Comparing each measured cut to the nearest audio onset:
 | 14.961 | +0.027s |
 | 15.661 | +0.082s |
 
-**Seven of eleven cuts land within 90 milliseconds of a beat.** This is a beat-synced edit, not
-loosely timed footage. It is the single hardest thing to fake and the main reason the montage
-feels professional rather than like a slideshow.
+**Seven of eleven cuts land within 90 milliseconds of a beat.**
+
+> **CORRECTION (2026-09-03).** This was over-read, and the conclusion drawn from it was wrong.
+>
+> Two independent tempo estimators — a phase-locked comb written for `scripts/viral/beatgrid.py`
+> and `librosa.beat.beat_track` — agree the track runs at **117.5–118.3 BPM**, a beat interval
+> of **0.51s**. The montage cuts every 0.333s, which is 1.53 cuts per beat: not a clean
+> subdivision of anything.
+>
+> So the reference is cutting on a **fixed one-third-second grid, not locked to the music.** The
+> "7 of 11 within 90ms" figure is a statistical artifact: onsets in this track sit roughly 0.25s
+> apart, so almost any cut lands within 90ms of one by chance. Intent was read into noise.
+>
+> This makes the format *easier* to reproduce, not harder — a fixed 0.333s grid is both what the
+> reference actually does and what `scripts/viral/build-money-counter.sh` already produces. Beat
+> synchronisation remains a real technique worth using, but it is not what this video is doing.
 
 ---
 
