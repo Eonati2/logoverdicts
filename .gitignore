@@ -48,3 +48,6 @@ Thumbs.db
 .cache/
 .local/
 attached_assets/
+
+out/
+artifacts/video-editor/public/*.mp4
