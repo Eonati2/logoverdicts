@@ -219,3 +219,55 @@ still short of the million it is visibly heading toward.
 **The music.** Cut points derive from its BPM, so the montage cannot be timed until the track
 exists. Pick from TikTok's audio library, prefer a trending sound, target ~80–90 BPM
 (half-time phonk/trap, matching the reference's ~83).
+
+---
+
+## Canva: assets yes, edit no
+
+Tested 2026-09-03. All six b-roll clips uploaded successfully into the user's Canva account
+via `upload-asset-from-url` — the Higgsfield CDN is publicly reachable, it is only this
+container's egress that blocks it.
+
+| Clip | Canva asset ID |
+|---|---|
+| 01 car interior | `VAHUG7wqEUI` |
+| 02 night skyline | `VAHUGxrmMa0` |
+| 03 watch macro | `VAHUGw9SDo0` |
+| 04 cash counter | `VAHUG3cxFnk` |
+| 05 trading screens | `VAHUGyPNsV8` |
+| 06 supercar wet street | `VAHUG43HF3Y` |
+
+**But the Canva MCP cannot perform this edit.** Its operation set is entirely spatial and
+content-based — there is no temporal control anywhere in the API:
+
+- `add_page` → width, height, title, background_color. **No duration.**
+- `insert_fill` (video) → asset_id, position, size, opacity, rotation. **No trim, no in/out.**
+- No transition, audio, or timing operation exists.
+
+Canva's default video page is 5s; the montage needs 0.33s. Driven through this API the result
+would be ~27 pages × 5s = 135 seconds instead of 9. Assets can be staged there for manual
+assembly in the Canva UI (where duration *is* editable), but the programmatic path stops here.
+
+**ffmpeg (installed, v7.0.2) does this trivially** — it is the same toolchain that measured the
+reference. It needs the clips as local files, which means downloading them from the generation
+widget and re-uploading, since the CDN is blocked for this container's egress.
+
+## Cut sheet — 15s version
+
+`0.00–8.00` counter on black, grey `#B4B4B4`, linear $105,263/sec (~$842,000 at the cut).
+`8.00–15.00` montage, 21 fragments at 0.333s. Six sources cycle so no two adjacent fragments
+share a clip; the in-point advances 1.0s per pass so no fragment repeats.
+
+| # | t | clip | in | # | t | clip | in |
+|---|---|---|---|---|---|---|---|
+| 1 | 8.000 | car | 0.0 | 12 | 11.667 | watch | 1.0 |
+| 2 | 8.333 | cash | 0.0 | 13 | 12.000 | car | 2.0 |
+| 3 | 8.667 | supercar | 0.0 | 14 | 12.333 | cash | 2.0 |
+| 4 | 9.000 | skyline | 0.0 | 15 | 12.667 | supercar | 2.0 |
+| 5 | 9.333 | screens | 0.0 | 16 | 13.000 | skyline | 2.0 |
+| 6 | 9.667 | watch | 0.0 | 17 | 13.333 | screens | 2.0 |
+| 7 | 10.000 | car | 1.0 | 18 | 13.667 | watch | 2.0 |
+| 8 | 10.333 | cash | 1.0 | 19 | 14.000 | car | 3.0 |
+| 9 | 10.667 | supercar | 1.0 | 20 | 14.333 | cash | 3.0 |
+| 10 | 11.000 | skyline | 1.0 | 21 | 14.667 | supercar | 3.0 |
+| 11 | 11.333 | screens | 1.0 | | | | |
