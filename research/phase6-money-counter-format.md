@@ -176,3 +176,46 @@ earlier, and it carries real platform and advertising-standards risk.
 
 The fix is cheap: keep it aspirational and unattributed, or label it. The format works exactly as
 well without implying the money is yours — the reference account never states whose it is either.
+
+---
+
+## B-roll library (generated 2026-09-03)
+
+Six 5-second clips, `seedance_2_0_mini`, 9:16, 720×1280, no audio. 12.5 credits each, **75 total**.
+30 seconds of footage against the ~9 seconds the montage needs, so each clip yields several
+distinct 0.33s fragments. Reusable across every counter video — this library does not need
+regenerating.
+
+| # | Shot | Job ID |
+|---|---|---|
+| 0 | Luxury car interior, light strips across leather/carbon | `7c6fd0bc-67ec-4214-b185-996843400654` |
+| 1 | Night city skyline across dark water | `8c5cb93c-7279-4fb5-817d-61716d689c10` |
+| 2 | Macro wristwatch face, raking light | `61ff0815-61af-4955-a87e-28e98874aeb5` |
+| 3 | Banknotes through a counting machine | `e607f80b-fdd4-49a0-b79b-1a1f45714cb7` |
+| 4 | Trading monitors glowing in the dark | `7a22f28f-540e-45df-85ee-886f25cdd8b7` |
+| 5 | Black supercar on a wet street at night | `03893559-c8af-4d1d-ac40-f80fc7913b28` |
+
+Balance after: **~292 credits**.
+
+## Counter spec, ready to build
+
+Music-independent — the count is linear, so this half can be built before the track is chosen.
+
+| Property | Value |
+|---|---|
+| Background | pure black, no footage |
+| Text | `$ N,NNN` — dollar sign, space, comma-grouped |
+| Colour | mid-grey ≈ `#B4B4B4`, never white |
+| Position | centred horizontally, slightly above vertical centre |
+| Rate | linear, `target / duration` per second |
+| Calibration | set the rate so it *would* hit a round number ~1.5s after the cut |
+| Cut point | 8.0s — before it lands |
+
+For a 15s edit: 8s counter + 7s montage. At $105,263/s the counter reads ~$842,000 at the cut,
+still short of the million it is visibly heading toward.
+
+## Remaining blocker
+
+**The music.** Cut points derive from its BPM, so the montage cannot be timed until the track
+exists. Pick from TikTok's audio library, prefer a trending sound, target ~80–90 BPM
+(half-time phonk/trap, matching the reference's ~83).
